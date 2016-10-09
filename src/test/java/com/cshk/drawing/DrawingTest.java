@@ -28,32 +28,60 @@ public class DrawingTest {
     String expectedString = "" +
         " --------------------\n" +
         "|                    |\n" +
-        "|******              |\n" +
-        "|     *              |\n" +
-        "|     *              |\n" +
+        "|xxxxxx              |\n" +
+        "|     x              |\n" +
+        "|     x              |\n" +
         " --------------------";
 
     assertEquals(expectedString, drawing.toString());
-//    Check from console
+
+    // For Interview Verify
     System.out.println(drawing.toString());
   }
 
   @Test
-  public void shouldRunRectCmdStringDirectly() throws Exception {
+  public void shouldRunCmdStringOneByOneDirectly() throws Exception {
     String cmd1 = "R 16 1 20 3";
 
     drawing.run(cmd1);
 
     String expectedString = "" +
         " --------------------\n" +
-        "|               *****|\n" +
-        "|               *   *|\n" +
-        "|               *****|\n" +
+        "|               xxxxx|\n" +
+        "|               x   x|\n" +
+        "|               xxxxx|\n" +
         "|                    |\n" +
         " --------------------";
 
     assertEquals(expectedString, drawing.toString());
-//    Check from console
+
+    // For Interview Verify
+    System.out.println(drawing.toString());
+  }
+
+  @Test
+  public void shouldRunRectCmdStringDirectly() throws Exception {
+    String cmd1 = "L 1 2 6 2";
+    String cmd2 = "L 6 3 6 4";
+    String cmd3 = "R 16 1 20 3";
+    String cmd4 = "B 10 3 o";
+
+    drawing.run(cmd1);
+    drawing.run(cmd2);
+    drawing.run(cmd3);
+    drawing.run(cmd4);
+
+    String expectedString = "" +
+        " --------------------\n" +
+        "|oooooooooooooooxxxxx|\n" +
+        "|xxxxxxooooooooox   x|\n" +
+        "|     xoooooooooxxxxx|\n" +
+        "|     xoooooooooooooo|\n" +
+        " --------------------";
+
+    assertEquals(expectedString, drawing.toString());
+
+    // For Interview Verify
     System.out.println(drawing.toString());
   }
 }

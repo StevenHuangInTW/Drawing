@@ -7,7 +7,7 @@ public class FillsTest {
 
   @Test
   public void shouldReturnCorrectFillStrings () {
-    Assert.assertEquals("*", new Fill("*").toString());
+    Assert.assertEquals("x", new Fill("x").toString());
     Assert.assertEquals("o", new Fill("o").toString());
     Assert.assertEquals(" ", new Fill(" ").toString());
   }

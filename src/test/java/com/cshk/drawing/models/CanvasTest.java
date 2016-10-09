@@ -64,14 +64,14 @@ public class CanvasTest {
 
   @Test
   public void shouldVerifyValidaCoordsForRect() throws Exception {
-    assertTrue(canvas.isValidCoords4Rect(validCoords4Rect1));
-    assertTrue(canvas.isValidCoords4Rect(validCoords4Rect2));
+    assertTrue(canvas.isCoordsWithinBounds(validCoords4Rect1));
+    assertTrue(canvas.isCoordsWithinBounds(validCoords4Rect2));
   }
 
   @Test
   public void shouldVerifyInvalidaCoordsForRect() throws Exception {
-    assertFalse(canvas.isValidCoords4Rect(invalidCoords4Rect1));
-    assertFalse(canvas.isValidCoords4Rect(invalidCoords4Rect2));
+    assertFalse(canvas.isCoordsWithinBounds(invalidCoords4Rect1));
+    assertFalse(canvas.isCoordsWithinBounds(invalidCoords4Rect2));
   }
 
   @Test

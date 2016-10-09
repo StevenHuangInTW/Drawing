@@ -25,7 +25,7 @@ public class LineCommandTest {
     String expectedString = "" +
         " --------------------\n" +
         "|                    |\n" +
-        "|******              |\n" +
+        "|xxxxxx              |\n" +
         "|                    |\n" +
         "|                    |\n" +
         " --------------------";
@@ -38,7 +38,7 @@ public class LineCommandTest {
     ICommand lineCommand = new LineCommand();
 
     Canvas canvas = new Canvas(20, 4);
-    Fill starFill = new Fill("*");
+    Fill starFill = new Fill("x");
     Coordinates coords = new Coordinates(6, 3, 6, 4);
 
     lineCommand.exec(canvas, coords, starFill);
@@ -47,8 +47,8 @@ public class LineCommandTest {
         " --------------------\n" +
         "|                    |\n" +
         "|                    |\n" +
-        "|     *              |\n" +
-        "|     *              |\n" +
+        "|     x              |\n" +
+        "|     x              |\n" +
         " --------------------";
 
     assertEquals(expectedString, canvas.toString());

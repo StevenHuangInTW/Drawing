@@ -37,11 +37,7 @@ public class Canvas {
     return isCoordsWithinBounds(coordinates) && (isXCoordsEqual(x1, x2) || isYCoordsEqual(y1, y2));
   }
 
-  public boolean isValidCoords4Rect(Coordinates coordinates) {
-    return isCoordsWithinBounds(coordinates);
-  }
-
-  private boolean isCoordsWithinBounds(Coordinates coordinates) {
+  public boolean isCoordsWithinBounds(Coordinates coordinates) {
     int x1 = coordinates.getX1Coord();
     int y1 = coordinates.getY1Coord();
     int x2 = coordinates.getX2Coord();

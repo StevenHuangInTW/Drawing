@@ -22,7 +22,7 @@ public class RectCommandTest {
   public void setUp() throws Exception {
     rectCommand = new RectCommand();
     canvas = new Canvas(20, 4);
-    starFill = new Fill("*");
+    starFill = new Fill("x");
   }
 
   @Test
@@ -33,9 +33,9 @@ public class RectCommandTest {
 
     String expectedString = "" +
         " --------------------\n" +
-        "|               *****|\n" +
-        "|               *   *|\n" +
-        "|               *****|\n" +
+        "|               xxxxx|\n" +
+        "|               x   x|\n" +
+        "|               xxxxx|\n" +
         "|                    |\n" +
         " --------------------";
 
@@ -50,7 +50,7 @@ public class RectCommandTest {
 
     String expectedString = "" +
         " --------------------\n" +
-        "|               *    |\n" +
+        "|               x    |\n" +
         "|                    |\n" +
         "|                    |\n" +
         "|                    |\n" +

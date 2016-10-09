@@ -1,4 +1,4 @@
-package com.cshk.drawing.commands;
+package com.cshk.drawing;
 
 import com.cshk.drawing.models.Canvas;
 import org.junit.Rule;

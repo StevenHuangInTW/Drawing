@@ -16,7 +16,7 @@ public class LineCommand implements ICommand {
         Integer.valueOf(params[3])
     );
 
-    Fill starFill = new Fill("*");
+    Fill starFill = new Fill("x");
     this.exec(canvas, coordinates, starFill);
   }
 

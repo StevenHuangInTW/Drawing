@@ -16,7 +16,7 @@ public class RectCommand implements ICommand {
         Integer.valueOf(params[3])
     );
 
-    Fill starFill = new Fill("*");
+    Fill starFill = new Fill("x");
     this.exec(canvas, coordinates, starFill);
   }
 
@@ -26,7 +26,7 @@ public class RectCommand implements ICommand {
   }
 
   private void drawRect(final Canvas canvas, Coordinates coords, Fill fill) throws Exception {
-    if (!canvas.isValidCoords4Rect(coords)) {
+    if (!canvas.isCoordsWithinBounds(coords)) {
       throw new Exception("Invalid Coordinates");
     }
 

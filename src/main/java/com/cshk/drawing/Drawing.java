@@ -1,6 +1,5 @@
 package com.cshk.drawing;
 
-import com.cshk.drawing.commands.CommandParser;
 import com.cshk.drawing.models.Canvas;
 
 public class Drawing {
