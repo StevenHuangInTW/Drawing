@@ -24,7 +24,7 @@ public class CommandParserTest {
 
     assertTrue(commandParser.getCommand() instanceof LineCommand);
     assertEquals(new Coordinates(1, 2, 6, 2), commandParser.getCoordinates());
-    assertEquals(starFill, commandParser.getFill());
+    assertEquals(starFill.toString(), commandParser.getFill().toString());
   }
 
   @Test

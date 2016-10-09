@@ -76,29 +76,6 @@ public class Drawing {
       return "Command String Parsing Failed";
     }
 
-    Fill[][] fills = canvas.getFills();
-    int width = fills[0].length;
-
-    StringBuilder drawingOutput = new StringBuilder();
-    drawingOutput
-        .append(" ")
-        .append(new String(new char[width]).replace("\0", "-"));
-
-    for (int i = 0; i < fills.length; i++) {
-      drawingOutput
-          .append("\n")
-          .append("|");
-      for (int j = 0; j < fills[i].length; j++) {
-        drawingOutput.append(fills[i][j]);
-      }
-      drawingOutput.append("|");
-    }
-
-    drawingOutput
-        .append("\n")
-        .append(" ")
-        .append(new String(new char[width]).replace("\0", "-"));
-
-    return drawingOutput.toString();
+    return canvas.toString();
   }
 }

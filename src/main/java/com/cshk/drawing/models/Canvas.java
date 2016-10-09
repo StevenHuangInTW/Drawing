@@ -57,4 +57,29 @@ public class Canvas {
   private boolean isYCoordsEqual(final int y1Coords, final int y2Coords) {
     return y1Coords == y2Coords;
   }
+
+  @Override
+  public String toString() {
+    StringBuilder drawingOutput = new StringBuilder();
+    drawingOutput
+        .append(" ")
+        .append(new String(new char[width]).replace("\0", "-"));
+
+    for (int i = 0; i < fills.length; i++) {
+      drawingOutput
+          .append("\n")
+          .append("|");
+      for (int j = 0; j < fills[i].length; j++) {
+        drawingOutput.append(fills[i][j]);
+      }
+      drawingOutput.append("|");
+    }
+
+    drawingOutput
+        .append("\n")
+        .append(" ")
+        .append(new String(new char[width]).replace("\0", "-"));
+
+    return drawingOutput.toString();
+  }
 }

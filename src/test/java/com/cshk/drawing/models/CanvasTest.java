@@ -34,7 +34,7 @@ public class CanvasTest {
 
     for (int h = 0; h < fills.length; h++) {
       for (int w = 0; w < fills[h].length; w++) {
-        assertEquals(defaultFill, fills[h][w]);
+        assertEquals(defaultFill.toString(), fills[h][w].toString());
       }
     }
   }
@@ -49,5 +49,18 @@ public class CanvasTest {
   public void shouldVerifyInvalidaCoordsForLine() throws Exception {
     assertFalse(canvas.isValidCoords4Line(invalidCoords4Line1));
     assertFalse(canvas.isValidCoords4Line(invalidCoords4Line2));
+  }
+
+  @Test
+  public void shouldPrintCorrectFillsWithBoders() throws Exception {
+    String expectedString = "" +
+        " --------------------\n" +
+        "|                    |\n" +
+        "|                    |\n" +
+        "|                    |\n" +
+        "|                    |\n" +
+        " --------------------";
+
+    assertEquals(expectedString, canvas.toString());
   }
 }
