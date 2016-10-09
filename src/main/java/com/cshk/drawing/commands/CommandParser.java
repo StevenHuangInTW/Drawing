@@ -6,7 +6,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public enum CommandParser {
-  LINE("^(L)\\s(((\\d+)\\s){3}(\\d+))$", new LineCommand());
+  LINE("^(L)\\s(((\\d+)\\s){3}(\\d+))$", new LineCommand()),
+  RECT("^(R)\\s(((\\d+)\\s){3}(\\d+))$", new RectCommand());
 
   private final static String BY_SPACE_CHAR = " ";
 

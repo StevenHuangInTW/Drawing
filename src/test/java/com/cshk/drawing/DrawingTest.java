@@ -35,6 +35,25 @@ public class DrawingTest {
 
     assertEquals(expectedString, drawing.toString());
 //    Check from console
-    System.out.print(drawing.toString());
+    System.out.println(drawing.toString());
+  }
+
+  @Test
+  public void shouldRunRectCmdStringDirectly() throws Exception {
+    String cmd1 = "R 16 1 20 3";
+
+    drawing.run(cmd1);
+
+    String expectedString = "" +
+        " --------------------\n" +
+        "|               *****|\n" +
+        "|               *   *|\n" +
+        "|               *****|\n" +
+        "|                    |\n" +
+        " --------------------";
+
+    assertEquals(expectedString, drawing.toString());
+//    Check from console
+    System.out.println(drawing.toString());
   }
 }
