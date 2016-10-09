@@ -1,71 +1,51 @@
 package com.cshk.drawing.commands;
 
-import com.cshk.drawing.models.Fill;
-import com.cshk.drawing.models.Coordinates;
+import com.cshk.drawing.models.Canvas;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class CommandParser {
-  private String cmdString;
-  private ICommand command;
-  private Coordinates coordinates;
-  private Fill fill;
+public enum CommandParser {
+  LINE("^(L)\\s(((\\d+)\\s){3}(\\d+))$", new LineCommand());
 
-  private final String BY_SPACE_CHAR = " ";
+  private final static String BY_SPACE_CHAR = " ";
 
-  private Map<String, ICommand> commandMap = new HashMap<String, ICommand>() {
-    {
-      put("L", new LineCommand());
-    }
-  };
+  private final Pattern pattern;
+  private final ICommand command;
 
-  public CommandParser(final String cmdString) {
-    this.cmdString = cmdString;
+  CommandParser(String regex, ICommand command) {
+    this.pattern = Pattern.compile(regex);
+    this.command = command;
   }
 
-  public boolean parse() {
-    String[] cmdArray = cmdString.split(BY_SPACE_CHAR);
+  private static CommandParser getExecCommand(String cmdString) {
+    for (CommandParser cmd : CommandParser.values()) {
+      Matcher m = cmd.pattern.matcher(cmdString);
 
-    command = commandMap.get(cmdArray[0]);
-    if (command == null) return false;
-
-    int twoCoordsLength = 5;
-    int oneCoordsLength = 4;
-
-    if (cmdArray.length == twoCoordsLength) {
-      coordinates = new Coordinates(
-          Integer.valueOf(cmdArray[1]),
-          Integer.valueOf(cmdArray[2]),
-          Integer.valueOf(cmdArray[3]),
-          Integer.valueOf(cmdArray[4])
-      );
-
-      Fill starFill = new Fill("*");
-      fill = starFill;
-    } else if (cmdArray.length == oneCoordsLength) {
-      coordinates = new Coordinates(
-          Integer.valueOf(cmdArray[1]),
-          Integer.valueOf(cmdArray[2])
-      );
-
-      fill = new Fill(cmdArray[3]);
-    } else {
-      return false;
+      if (m.matches()) {
+        return cmd;
+      }
     }
 
-    return true;
+    return null;
   }
 
-  public ICommand getCommand() {
-    return command;
+  private String[] parseParams(String cmdString) {
+    Matcher m = this.pattern.matcher(cmdString);
+
+    m.matches();
+    return m.group(2).split(BY_SPACE_CHAR);
   }
 
-  public Coordinates getCoordinates() {
-    return coordinates;
-  }
+  public static void process(Canvas canvas, String cmdString) throws Exception {
+    CommandParser commandParser = getExecCommand(cmdString);
 
-  public Fill getFill() {
-    return fill;
+    if (commandParser == null) {
+      throw new Exception("Invalid Command Format");
+    }
+
+    String[] params = commandParser.parseParams(cmdString);
+
+    commandParser.command.exec(canvas, params);
   }
 }

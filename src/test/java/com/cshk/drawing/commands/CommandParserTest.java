@@ -1,42 +1,24 @@
 package com.cshk.drawing.commands;
 
-import com.cshk.drawing.models.Fill;
-import com.cshk.drawing.models.Coordinates;
-import org.junit.Before;
+import com.cshk.drawing.models.Canvas;
+import org.junit.Rule;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
+import org.junit.rules.ExpectedException;
 
 public class CommandParserTest {
-
-  private Fill starFill;
-
-  @Before
-  public void setUp() throws Exception {
-    starFill = new Fill("*");
-
-  }
+  @Rule
+  public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void shouldParseLineCommand() throws Exception {
-    CommandParser commandParser = new CommandParser("L 1 2 6 2");
-    commandParser.parse();
+  public void shouldThrowExceptionWhileUsingInvalidInput() throws Exception {
+    Canvas canvas = new Canvas(20, 4);
+    String cmd1 = "L 1 2 6 a";
 
-    assertTrue(commandParser.getCommand() instanceof LineCommand);
-    assertEquals(new Coordinates(1, 2, 6, 2), commandParser.getCoordinates());
-    assertEquals(starFill.toString(), commandParser.getFill().toString());
-  }
+    String expectedMsg = "Invalid Command Format";
 
-  @Test
-  public void shouldParseFail4LineCommand() throws Exception {
-    CommandParser commandParser = new CommandParser("X 1 2 4");
-    boolean isSucceed = commandParser.parse();
+    thrown.expect(Exception.class);
+    thrown.expectMessage(expectedMsg);
 
-    assertFalse(isSucceed);
-
-    commandParser = new CommandParser("L 1 2");
-    isSucceed = commandParser.parse();
-
-    assertFalse(isSucceed);
+    CommandParser.process(canvas, cmd1);
   }
 }

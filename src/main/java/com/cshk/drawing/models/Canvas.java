@@ -34,12 +34,20 @@ public class Canvas {
     int x2 = coordinates.getX2Coord();
     int y2 = coordinates.getY2Coord();
 
+    return isCoordsWithinBounds(coordinates) && (isXCoordsEqual(x1, x2) || isYCoordsEqual(y1, y2));
+  }
+
+  private boolean isCoordsWithinBounds(Coordinates coordinates) {
+    int x1 = coordinates.getX1Coord();
+    int y1 = coordinates.getY1Coord();
+    int x2 = coordinates.getX2Coord();
+    int y2 = coordinates.getY2Coord();
+
 
     return isXCoordsWithinBounds(x1)
         && isXCoordsWithinBounds(x2)
         && isYCoordsWithinBounds(y1)
-        && isYCoordsWithinBounds(y2)
-        && (isXCoordsEqual(x1, x2) || isYCoordsEqual(y1, y2));
+        && isYCoordsWithinBounds(y2);
   }
 
   private boolean isXCoordsWithinBounds(final int xCoords) {
