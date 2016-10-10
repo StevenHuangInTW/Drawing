@@ -1,4 +1,4 @@
-package com.cshk.drawing;
+package com.cshk.drawing.parser;
 
 import com.cshk.drawing.commands.BucketCommand;
 import com.cshk.drawing.commands.ICommand;
@@ -10,9 +10,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public enum CommandParser {
-  LINE("^(L)\\s(((\\d+)\\s){3}(\\d+))$", new LineCommand()),
-  RECT("^(R)\\s(((\\d+)\\s){3}(\\d+))$", new RectCommand()),
-  BUCKET("^(B)\\s(((\\d+)\\s){2}(\\w+))$", new BucketCommand());
+  LINE("^(L|l)\\s(((\\d+)\\s){3}(\\d+))$", new LineCommand()),
+  RECT("^(R|r)\\s(((\\d+)\\s){3}(\\d+))$", new RectCommand()),
+  BUCKET("^(B|b)\\s(((\\d+)\\s){2}(.{1}))$", new BucketCommand());
 
   private final static String BY_SPACE_CHAR = " ";
 

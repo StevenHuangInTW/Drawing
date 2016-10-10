@@ -1,21 +1,24 @@
 package com.cshk.drawing;
 
 import com.cshk.drawing.models.Canvas;
+import com.cshk.drawing.parser.CommandParser;
 
-public class Drawing {
+import static java.lang.System.exit;
+
+class Drawing {
 
   private Canvas canvas;
 
-  public Drawing(final Canvas canvas) {
+  Drawing(final Canvas canvas) {
     this.canvas = canvas;
   }
 
-  public void run(final String cmdString) {
-    try {
-      CommandParser.process(this.canvas, cmdString);
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
+  void run(final String cmdString) throws Exception {
+    if (cmdString.toUpperCase().equals("Q")) {
+      exit(1);
     }
+
+    CommandParser.process(this.canvas, cmdString);
   }
 
   @Override

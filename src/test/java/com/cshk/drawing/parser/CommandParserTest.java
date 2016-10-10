@@ -1,4 +1,4 @@
-package com.cshk.drawing;
+package com.cshk.drawing.parser;
 
 import com.cshk.drawing.models.Canvas;
 import org.junit.Rule;
