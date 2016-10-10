@@ -55,6 +55,27 @@ public class LineCommandTest {
   }
 
   @Test
+  public void shouldDrawALineReverselyOnAnyDrawableObject() throws Exception {
+    Command lineCommand = new LineCommand();
+
+    Canvas canvas = new Canvas(20, 4);
+    String[] coords = {"6", "4", "6", "2"};
+    lineCommand.setParams(coords);
+
+    lineCommand.exec(canvas);
+
+    String expectedString = "" +
+        " --------------------\n" +
+        "|                    |\n" +
+        "|     x              |\n" +
+        "|     x              |\n" +
+        "|     x              |\n" +
+        " --------------------";
+
+    assertEquals(expectedString, canvas.toString());
+  }
+
+  @Test
   public void shouldThrowExceptionWhileUsingWrongCoords() throws Exception {
     Command lineCommand = new LineCommand();
 

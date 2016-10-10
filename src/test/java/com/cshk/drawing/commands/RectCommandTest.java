@@ -59,6 +59,24 @@ public class RectCommandTest {
   }
 
   @Test
+  public void shouldDrawARectangleReverselyOnAnyDrawableObject() throws Exception {
+    String[] coords = {"20", "3", "16", "1"};
+    rectCommand.setParams(coords);
+
+    rectCommand.exec(canvas);
+
+    String expectedString = "" +
+        " --------------------\n" +
+        "|               xxxxx|\n" +
+        "|               x   x|\n" +
+        "|               xxxxx|\n" +
+        "|                    |\n" +
+        " --------------------";
+
+    assertEquals(expectedString, canvas.toString());
+  }
+
+  @Test
   public void shouldThrowExceptionWhileUsingWrongCoords() throws Exception {
     String[] coords = {"16", "1", "16", "5"};
     rectCommand.setParams(coords);

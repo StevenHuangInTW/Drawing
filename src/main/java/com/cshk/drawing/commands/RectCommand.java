@@ -27,18 +27,15 @@ public class RectCommand extends Command {
     }
 
     Fill[][] fills = canvas.getFills();
+    int x1Coord = coords.getX1Coord();
+    int x2Coord = coords.getX2Coord();
+    int y1Coord = coords.getY1Coord();
+    int y2Coord = coords.getY2Coord();
 
     for (int h = 0; h < fills.length; h++) {
       for (int w = 0; w < fills[h].length; w++) {
-        if (
-            (
-                (coords.getX1Coord() == w || coords.getX2Coord() == w)
-                    && coords.getY1Coord() <= h
-                    && coords.getY2Coord() >= h)
-                || (
-                (coords.getY1Coord() == h || coords.getY2Coord() == h)
-                    && coords.getX1Coord() <= w
-                    && coords.getX2Coord() >= w)
+        if ((x1Coord == w || x2Coord == w) && isInRange(h, y1Coord, y2Coord)
+            || (y1Coord == h || y2Coord == h) && isInRange(w, x1Coord, x2Coord)
             ) {
           fills[h][w] = fill;
         }

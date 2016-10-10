@@ -27,20 +27,18 @@ public class LineCommand extends Command {
     }
 
     Fill[][] fills = canvas.getFills();
+    int x1Coord = coordinates.getX1Coord();
+    int x2Coord = coordinates.getX2Coord();
+    int y1Coord = coordinates.getY1Coord();
+    int y2Coord = coordinates.getY2Coord();
 
     for (int h = 0; h < fills.length; h++) {
       for (int w = 0; w < fills[h].length; w++) {
         if (
             (
-                coordinates.getY1Coord() == h
-                    && coordinates.getY2Coord() == h
-                    && coordinates.getX1Coord() <= w
-                    && coordinates.getX2Coord() >= w
+                y1Coord == h && y2Coord == h && isInRange(w, x1Coord, x2Coord)
             ) || (
-                coordinates.getX1Coord() == w
-                    && coordinates.getX2Coord() == w
-                    && coordinates.getY1Coord() <= h
-                    && coordinates.getY2Coord() >= h
+                x1Coord == w && x2Coord == w && isInRange(h, y1Coord, y2Coord)
             )) {
           fills[h][w] = fill;
         }
