@@ -4,7 +4,6 @@ import com.cshk.drawing.models.Canvas;
 import com.cshk.drawing.models.Coordinates;
 import com.cshk.drawing.models.Fill;
 
-
 public class LineCommand extends Command {
 
   @Override

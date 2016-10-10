@@ -29,7 +29,6 @@ public class BucketCommand extends Command {
       throw new Exception("Invalid Coordinates");
     }
 
-
     Fill[][] fills = canvas.getFills();
 
     int x = coords.getX1Coord();

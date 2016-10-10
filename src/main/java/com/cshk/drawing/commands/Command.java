@@ -3,6 +3,7 @@ package com.cshk.drawing.commands;
 import com.cshk.drawing.models.Canvas;
 
 public abstract class Command {
+
   private String[] params;
 
   public void setParams(String[] params) {

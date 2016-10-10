@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 public class CommandParserTest {
+
   @Rule
   public ExpectedException thrown = ExpectedException.none();
 

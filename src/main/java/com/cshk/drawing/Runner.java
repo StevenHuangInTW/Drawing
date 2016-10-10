@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 
 public class Runner {
+
   private Drawing drawing;
 
   public void run() {

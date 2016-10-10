@@ -9,6 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public enum CommandParser {
+
   LINE("^(L|l)\\s(((\\d+)\\s){3}(\\d+))$", new LineCommand()),
   RECT("^(R|r)\\s(((\\d+)\\s){3}(\\d+))$", new RectCommand()),
   BUCKET("^(B|b)\\s(((\\d+)\\s){2}(.{1}))$", new BucketCommand());

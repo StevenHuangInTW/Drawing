@@ -9,6 +9,7 @@ import org.junit.rules.ExpectedException;
 import static org.junit.Assert.assertEquals;
 
 public class RectCommandTest {
+
   @Rule
   public ExpectedException thrown = ExpectedException.none();
 

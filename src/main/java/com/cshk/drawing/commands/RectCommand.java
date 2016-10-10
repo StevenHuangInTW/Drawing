@@ -4,7 +4,6 @@ import com.cshk.drawing.models.Canvas;
 import com.cshk.drawing.models.Coordinates;
 import com.cshk.drawing.models.Fill;
 
-
 public class RectCommand extends Command {
 
   @Override
@@ -21,7 +20,6 @@ public class RectCommand extends Command {
     Fill starFill = new Fill("x");
     drawRect(canvas, coordinates, starFill);
   }
-
 
   private void drawRect(final Canvas canvas, Coordinates coords, Fill fill) throws Exception {
     if (!canvas.isCoordsWithinBounds(coords)) {
