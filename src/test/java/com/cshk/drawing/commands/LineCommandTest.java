@@ -1,8 +1,6 @@
 package com.cshk.drawing.commands;
 
 import com.cshk.drawing.models.Canvas;
-import com.cshk.drawing.models.Coordinates;
-import com.cshk.drawing.models.Fill;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -15,12 +13,13 @@ public class LineCommandTest {
 
   @Test
   public void shouldDrawAHorizontalLineOnAnyDrawableObject() throws Exception {
-    ICommand lineCommand = new LineCommand();
+    Command lineCommand = new LineCommand();
 
     Canvas canvas = new Canvas(20, 4);
     String[] coords = {"1", "2", "6", "2"};
+    lineCommand.setParams(coords);
 
-    lineCommand.exec(canvas, coords);
+    lineCommand.exec(canvas);
 
     String expectedString = "" +
         " --------------------\n" +
@@ -35,13 +34,13 @@ public class LineCommandTest {
 
   @Test
   public void shouldDrawAVerticalLineOnAnyDrawableObject() throws Exception {
-    ICommand lineCommand = new LineCommand();
+    Command lineCommand = new LineCommand();
 
     Canvas canvas = new Canvas(20, 4);
-    Fill starFill = new Fill("x");
-    Coordinates coords = new Coordinates(6, 3, 6, 4);
+    String[] coords = {"6", "3", "6", "4"};
+    lineCommand.setParams(coords);
 
-    lineCommand.exec(canvas, coords, starFill);
+    lineCommand.exec(canvas);
 
     String expectedString = "" +
         " --------------------\n" +
@@ -56,16 +55,17 @@ public class LineCommandTest {
 
   @Test
   public void shouldThrowExceptionWhileUsingWrongCoords() throws Exception {
-    ICommand lineCommand = new LineCommand();
+    Command lineCommand = new LineCommand();
 
     Canvas canvas = new Canvas(20, 4);
     String[] invalidCoords = {"1", "2", "6", "3"};
+    lineCommand.setParams(invalidCoords);
 
     String expectedMsg = "Invalid Coordinates";
 
     thrown.expect(Exception.class);
     thrown.expectMessage(expectedMsg);
 
-    lineCommand.exec(canvas, invalidCoords);
+    lineCommand.exec(canvas);
   }
 }

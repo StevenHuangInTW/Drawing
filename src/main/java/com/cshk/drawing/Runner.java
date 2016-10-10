@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class Executor {
+public class Runner {
   private Drawing drawing;
 
   public void run() {
@@ -20,7 +20,7 @@ public class Executor {
     do {
       String cmdString = in.nextLine();
       try {
-        drawing.run(cmdString);
+        drawing.draw(cmdString);
         System.out.println(drawing.toString());
       } catch (Exception e) {
         System.out.println(e.getMessage());

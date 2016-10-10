@@ -1,5 +1,6 @@
 package com.cshk.drawing;
 
+import com.cshk.drawing.commands.Command;
 import com.cshk.drawing.models.Canvas;
 import com.cshk.drawing.parser.CommandParser;
 
@@ -13,12 +14,13 @@ class Drawing {
     this.canvas = canvas;
   }
 
-  void run(final String cmdString) throws Exception {
+  void draw(final String cmdString) throws Exception {
     if (cmdString.toUpperCase().equals("Q")) {
       exit(1);
     }
 
-    CommandParser.process(this.canvas, cmdString);
+    Command command = CommandParser.process(cmdString);
+    command.exec(canvas);
   }
 
   @Override

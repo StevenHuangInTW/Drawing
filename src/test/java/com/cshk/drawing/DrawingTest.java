@@ -22,8 +22,8 @@ public class DrawingTest {
     String cmd1 = "L 1 2 6 2";
     String cmd2 = "L 6 3 6 4";
 
-    drawing.run(cmd1);
-    drawing.run(cmd2);
+    drawing.draw(cmd1);
+    drawing.draw(cmd2);
 
     String expectedString = "" +
         " --------------------\n" +
@@ -43,7 +43,7 @@ public class DrawingTest {
   public void shouldRunCmdStringOneByOneDirectly() throws Exception {
     String cmd1 = "R 16 1 20 3";
 
-    drawing.run(cmd1);
+    drawing.draw(cmd1);
 
     String expectedString = "" +
         " --------------------\n" +
@@ -66,10 +66,10 @@ public class DrawingTest {
     String cmd3 = "R 16 1 20 3";
     String cmd4 = "B 10 3 o";
 
-    drawing.run(cmd1);
-    drawing.run(cmd2);
-    drawing.run(cmd3);
-    drawing.run(cmd4);
+    drawing.draw(cmd1);
+    drawing.draw(cmd2);
+    drawing.draw(cmd3);
+    drawing.draw(cmd4);
 
     String expectedString = "" +
         " --------------------\n" +

@@ -5,10 +5,12 @@ import com.cshk.drawing.models.Coordinates;
 import com.cshk.drawing.models.Fill;
 
 
-public class LineCommand implements ICommand {
+public class LineCommand extends Command {
 
   @Override
-  public void exec(final Canvas canvas, String[] params) throws Exception {
+  public void exec(final Canvas canvas) throws Exception {
+    String[] params = this.getParams();
+
     Coordinates coordinates = new Coordinates(
         Integer.valueOf(params[0]),
         Integer.valueOf(params[1]),
@@ -17,12 +19,7 @@ public class LineCommand implements ICommand {
     );
 
     Fill starFill = new Fill("x");
-    this.exec(canvas, coordinates, starFill);
-  }
-
-  @Override
-  public void exec(final Canvas canvas, Coordinates coords, Fill fill) throws Exception {
-    drawLine(canvas, coords, fill);
+    drawLine(canvas, coordinates, starFill);
   }
 
   private void drawLine(final Canvas canvas, Coordinates coordinates, Fill fill) throws Exception {

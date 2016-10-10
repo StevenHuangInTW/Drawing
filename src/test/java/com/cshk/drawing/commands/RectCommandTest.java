@@ -1,8 +1,6 @@
 package com.cshk.drawing.commands;
 
 import com.cshk.drawing.models.Canvas;
-import com.cshk.drawing.models.Coordinates;
-import com.cshk.drawing.models.Fill;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -14,22 +12,21 @@ public class RectCommandTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
 
-  private ICommand rectCommand;
+  private Command rectCommand;
   private Canvas canvas;
-  private Fill starFill;
 
   @Before
   public void setUp() throws Exception {
     rectCommand = new RectCommand();
     canvas = new Canvas(20, 4);
-    starFill = new Fill("x");
   }
 
   @Test
   public void shouldDrawANormalRectangleOnAnyDrawableObject() throws Exception {
-    Coordinates coords = new Coordinates(16, 1, 20, 3);
+    String[] coords = {"16", "1", "20", "3"};
+    rectCommand.setParams(coords);
 
-    rectCommand.exec(canvas, coords, starFill);
+    rectCommand.exec(canvas);
 
     String expectedString = "" +
         " --------------------\n" +
@@ -45,8 +42,9 @@ public class RectCommandTest {
   @Test
   public void shouldDrawADotAsARectangleOnAnyDrawableObject() throws Exception {
     String[] coords = {"16", "1", "16", "1"};
+    rectCommand.setParams(coords);
 
-    rectCommand.exec(canvas, coords);
+    rectCommand.exec(canvas);
 
     String expectedString = "" +
         " --------------------\n" +
@@ -61,13 +59,14 @@ public class RectCommandTest {
 
   @Test
   public void shouldThrowExceptionWhileUsingWrongCoords() throws Exception {
-    Coordinates coords = new Coordinates(16, 1, 16, 5);
+    String[] coords = {"16", "1", "16", "5"};
+    rectCommand.setParams(coords);
 
     String expectedMsg = "Invalid Coordinates";
 
     thrown.expect(Exception.class);
     thrown.expectMessage(expectedMsg);
 
-    rectCommand.exec(canvas, coords, starFill);
+    rectCommand.exec(canvas);
   }
 }

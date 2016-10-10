@@ -1,10 +1,9 @@
 package com.cshk.drawing.parser;
 
 import com.cshk.drawing.commands.BucketCommand;
-import com.cshk.drawing.commands.ICommand;
+import com.cshk.drawing.commands.Command;
 import com.cshk.drawing.commands.LineCommand;
 import com.cshk.drawing.commands.RectCommand;
-import com.cshk.drawing.models.Canvas;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,11 +14,10 @@ public enum CommandParser {
   BUCKET("^(B|b)\\s(((\\d+)\\s){2}(.{1}))$", new BucketCommand());
 
   private final static String BY_SPACE_CHAR = " ";
-
   private final Pattern pattern;
-  private final ICommand command;
+  private final Command command;
 
-  CommandParser(String regex, ICommand command) {
+  CommandParser(String regex, Command command) {
     this.pattern = Pattern.compile(regex);
     this.command = command;
   }
@@ -43,7 +41,7 @@ public enum CommandParser {
     return m.group(2).split(BY_SPACE_CHAR);
   }
 
-  public static void process(Canvas canvas, String cmdString) throws Exception {
+  public static Command process(String cmdString) throws Exception {
     CommandParser commandParser = getExecCommand(cmdString);
 
     if (commandParser == null) {
@@ -52,6 +50,9 @@ public enum CommandParser {
 
     String[] params = commandParser.parseParams(cmdString);
 
-    commandParser.command.exec(canvas, params);
+    Command command = commandParser.command;
+    command.setParams(params);
+
+    return command;
   }
 }

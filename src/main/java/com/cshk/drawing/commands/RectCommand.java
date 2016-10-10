@@ -5,10 +5,12 @@ import com.cshk.drawing.models.Coordinates;
 import com.cshk.drawing.models.Fill;
 
 
-public class RectCommand implements ICommand {
+public class RectCommand extends Command {
 
   @Override
-  public void exec(final Canvas canvas, String[] params) throws Exception {
+  public void exec(final Canvas canvas) throws Exception {
+    String[] params = this.getParams();
+
     Coordinates coordinates = new Coordinates(
         Integer.valueOf(params[0]),
         Integer.valueOf(params[1]),
@@ -17,13 +19,9 @@ public class RectCommand implements ICommand {
     );
 
     Fill starFill = new Fill("x");
-    this.exec(canvas, coordinates, starFill);
+    drawRect(canvas, coordinates, starFill);
   }
 
-  @Override
-  public void exec(final Canvas canvas, Coordinates coords, Fill fill) throws Exception {
-    drawRect(canvas, coords, fill);
-  }
 
   private void drawRect(final Canvas canvas, Coordinates coords, Fill fill) throws Exception {
     if (!canvas.isCoordsWithinBounds(coords)) {
