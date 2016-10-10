@@ -5,11 +5,12 @@ import com.cshk.drawing.models.Coordinates;
 import com.cshk.drawing.models.Fill;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class BucketCommand implements ICommand {
 
-  private ArrayList<Coordinates> paintedPoints = new ArrayList();
+  private ArrayList<Coordinates> paintedPoints = new ArrayList<>();
   private Fill defaultFill = new Fill();
 
   @Override
@@ -39,7 +40,7 @@ public class BucketCommand implements ICommand {
     int x = coords.getX1Coord();
     int y = coords.getY1Coord();
 
-    if (fills[y][x].toString() == defaultFill.toString()) {
+    if (Objects.equals(fills[y][x].toString(), defaultFill.toString())) {
       checkAroundCoords(x, y, fills);
 
       for (Coordinates point : paintedPoints) {
@@ -63,7 +64,7 @@ public class BucketCommand implements ICommand {
     int height = fills.length;
     int width = fills[0].length;
 
-    if ((x >= 0 && x < width && y >= 0 && y < height) && fills[y][x].toString() == defaultFill.toString()) {
+    if ((x >= 0 && x < width && y >= 0 && y < height) && Objects.equals(fills[y][x].toString(), defaultFill.toString())) {
       if (!paintedPoints.contains(new Coordinates(x, y))) {
         paintedPoints.add(new Coordinates(x, y));
         checkAroundCoords(x, y, fills);

@@ -41,6 +41,23 @@ public class BucketCommandTest {
     assertEquals(expectedString, canvas.toString());
   }
 
+  @Test
+  public void shouldFillBucketWithAnyCharsOnAnyDrawableObject() throws Exception {
+    String[] params = {"10", "3", "@"};
+
+    bucketCommand.exec(canvas, params);
+
+    String expectedString = "" +
+        " --------------------\n" +
+        "|@@@@@@@@@@@@@@@@@@@@|\n" +
+        "|@@@@@@@@@@@@@@@@@@@@|\n" +
+        "|@@@@@@@@@@@@@@@@@@@@|\n" +
+        "|@@@@@@@@@@@@@@@@@@@@|\n" +
+        " --------------------";
+
+    assertEquals(expectedString, canvas.toString());
+  }
+
 
   @Test
   public void shouldThrowExceptionWhileUsingWrongCoords() throws Exception {
